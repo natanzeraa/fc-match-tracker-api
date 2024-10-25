@@ -1,6 +1,7 @@
 package com.scoreboard.scoreboard.controllers;
-import com.scoreboard.scoreboard.dtos.PlayerMatchDTO;
+
 import com.scoreboard.scoreboard.models.PlayerMatch;
+import com.scoreboard.scoreboard.dtos.PlayerMatchDTO;
 import com.scoreboard.scoreboard.services.PlayerMatchService;
 
 import jakarta.validation.Valid;
@@ -9,9 +10,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+import java.util.List;
 
 @RestController
 @RequestMapping("/played-match")
