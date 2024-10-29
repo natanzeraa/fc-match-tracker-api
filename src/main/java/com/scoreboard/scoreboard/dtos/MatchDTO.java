@@ -11,5 +11,8 @@ import java.util.UUID;
 public class MatchDTO {
 
     private UUID id;
-    private String title;
+    private PlayerDTO homePlayer;
+    private PlayerDTO awayPlayer;
+    private Integer homePlayerGoals;
+    private Integer awayPlayerGoals;
 }
