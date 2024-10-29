@@ -9,5 +9,7 @@ import java.util.UUID;
 
 
 @Repository
-public interface PlayerRepository extends JpaRepository<Player, UUID> {}
+public interface PlayerRepository extends JpaRepository<Player, UUID> {
+	boolean existsByEmail(String email);
+}
 
