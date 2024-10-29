@@ -1,17 +1,27 @@
 package com.scoreboard.scoreboard.controllers;
 
-import com.scoreboard.scoreboard.models.Player;
-import com.scoreboard.scoreboard.dtos.PlayerDTO;
-import com.scoreboard.scoreboard.services.PlayerService;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
+import com.scoreboard.scoreboard.dtos.PlayerDTO;
+import com.scoreboard.scoreboard.models.Player;
+import com.scoreboard.scoreboard.services.PlayerService;
 
-import java.util.Map;
-import java.util.UUID;
-import java.util.List;
+import jakarta.validation.Valid;
 
 
 @RestController
@@ -36,17 +46,17 @@ public class PlayerController {
     }
 
     @PostMapping
-    public ResponseEntity<Player> create(@RequestBody PlayerDTO playerDTO) {
+    public ResponseEntity<Player> create(@RequestBody @Valid PlayerDTO playerDTO) {
         return ResponseEntity.status(HttpStatus.CREATED).body(playerService.create(playerDTO));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Object> update(@PathVariable UUID id, @RequestBody PlayerDTO playerDTO) {
+    public ResponseEntity<Object> update(@PathVariable UUID id, @RequestBody @Valid PlayerDTO playerDTO) {
         return ResponseEntity.status(HttpStatus.CREATED).body(playerService.update(id, playerDTO));
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<Object> patch(@PathVariable UUID id, @RequestBody Map<String, Object> parcialData) {
+    public ResponseEntity<Object> patch(@PathVariable UUID id, @RequestBody @Valid Map<String, Object> parcialData) {
         return ResponseEntity.status(HttpStatus.CREATED).body(playerService.patch(id, parcialData));
     }
 
