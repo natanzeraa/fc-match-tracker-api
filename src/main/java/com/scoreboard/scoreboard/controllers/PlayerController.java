@@ -13,7 +13,6 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.List;
 
-import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping( "/players")
@@ -32,29 +31,27 @@ public class PlayerController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Object> findById(@PathVariable(value = "id") UUID id) {
+    public ResponseEntity<Object> findById(@PathVariable UUID id) {
         return ResponseEntity.status(HttpStatus.OK).body(playerService.findById(id));
     }
 
     @PostMapping
-    public ResponseEntity<Player> create(@RequestBody @Valid PlayerDTO playerDTO) {
+    public ResponseEntity<Player> create(@RequestBody PlayerDTO playerDTO) {
         return ResponseEntity.status(HttpStatus.CREATED).body(playerService.create(playerDTO));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Object> update(@PathVariable(value = "id") UUID id,
-                                         @RequestBody PlayerDTO playerDTO) {
+    public ResponseEntity<Object> update(@PathVariable UUID id, @RequestBody PlayerDTO playerDTO) {
         return ResponseEntity.status(HttpStatus.CREATED).body(playerService.update(id, playerDTO));
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<Object> patch(@PathVariable(value = "id") UUID id,
-                                         @RequestBody Map<String, Object> parcialData) {
+    public ResponseEntity<Object> patch(@PathVariable UUID id, @RequestBody Map<String, Object> parcialData) {
         return ResponseEntity.status(HttpStatus.CREATED).body(playerService.patch(id, parcialData));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Object> delete(@PathVariable(value = "id") UUID id) {
+    public ResponseEntity<Object> delete(@PathVariable UUID id) {
         playerService.delete(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }

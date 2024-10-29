@@ -33,7 +33,7 @@ public class MatchController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Match> findBYId(@PathVariable(value="id")UUID id) {
+    public ResponseEntity<Match> findBYId(@PathVariable UUID id) {
         return ResponseEntity.status(HttpStatus.OK).body(matchService.findById(id));
     }
 
@@ -43,18 +43,17 @@ public class MatchController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Object> update(@PathVariable(value = "id") UUID id, @RequestBody @Valid MatchDTO matchDTO){
+    public ResponseEntity<Object> update(@PathVariable UUID id, @RequestBody @Valid MatchDTO matchDTO){
         return ResponseEntity.status(HttpStatus.CREATED).body(matchService.update(id, matchDTO));
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<Object> patch(@PathVariable(value = "id") UUID id,
-                                        @RequestBody @Valid Map<String, Object> partialData){
+    public ResponseEntity<Object> patch(@PathVariable UUID id, @RequestBody @Valid Map<String, Object> partialData){
         return ResponseEntity.status(HttpStatus.CREATED).body(matchService.patch(id, partialData));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Object> delete(@PathVariable(value = "id") UUID id){
+    public ResponseEntity<Object> delete(@PathVariable UUID id){
         matchService.delete(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
