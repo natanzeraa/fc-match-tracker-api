@@ -1,24 +1,48 @@
 package com.scoreboard.scoreboard.services;
 
 
-import com.scoreboard.scoreboard.models.Match;
 import com.scoreboard.scoreboard.dtos.MatchDTO;
+import com.scoreboard.scoreboard.models.Match;
 import com.scoreboard.scoreboard.models.Player;
 import com.scoreboard.scoreboard.repositories.MatchRepository;
-
+import com.scoreboard.scoreboard.repositories.PlayerRepository;
 import com.scoreboard.scoreboard.utils.MergeableDataHandler;
-import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.Map;
+import java.util.UUID;
+import java.util.List;
+
 
 @Service
 public class MatchService extends MergeableDataHandler {
 
-    MatchRepository matchRepository;
+    private final PlayerRepository playerRepository;
+    private final MatchRepository matchRepository;
 
-    public MatchService(MatchRepository matchRepository) {
+    public MatchService(
+            PlayerRepository playerRepository,
+            MatchRepository matchRepository)
+    {
+        this.playerRepository = playerRepository;
         this.matchRepository = matchRepository;
+    }
+
+    private Match getAndSavePlayerMatchObject(MatchDTO matchDTO, Match matchModel) {
+
+        Player homePlayer = playerRepository.findById(matchDTO.getHomePlayer().getId())
+                .orElseThrow(() -> new RuntimeException("Home player not found"));
+
+        Player awayPlayer = playerRepository.findById(matchDTO.getAwayPlayer().getId())
+                .orElseThrow(() -> new RuntimeException("Away player not found"));
+
+
+        matchModel.setAwayPlayer(awayPlayer);
+        matchModel.setHomePlayer(homePlayer);
+        matchModel.setHomePlayerGoals(matchDTO.getHomePlayerGoals());
+        matchModel.setAwayPlayerGoals(matchDTO.getAwayPlayerGoals());
+
+        return matchRepository.save(matchModel);
     }
 
     public List<Match> findAll() {
@@ -26,39 +50,33 @@ public class MatchService extends MergeableDataHandler {
     }
 
     public Match findById(UUID id) {
-        return matchRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Match not found"));
+       return matchRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("No played matches found"));
     }
 
-    public Match create(MatchDTO matchrDTO) {
-        var matchModel = new Match();
-        BeanUtils.copyProperties(matchrDTO, matchModel);
-        return matchRepository.save(matchModel);
+    public Match create(MatchDTO playerMatchDTO) {
+    	Match playerMatchModel = new Match();
+        return getAndSavePlayerMatchObject(playerMatchDTO, playerMatchModel);
     }
 
-    public Object update(UUID id, MatchDTO matchDTO) {
-        Match match = matchRepository.findById(id)
-                .orElseThrow(()-> new RuntimeException("Mach not found"));
-
-        match.setId(match.getId());
-        match.setTitle(matchDTO.getTitle());
-        match.setCreatedOn(match.getCreatedOn());
-        match.setLastUpdate(new Date().toInstant());
-
-        return matchRepository.save(match);
+    public Object update(UUID id, MatchDTO playerMatchDTO) {
+    	Match playerMatchModel = matchRepository.findById(id)
+                .orElseThrow(()-> new RuntimeException("No played matches found"));
+        return getAndSavePlayerMatchObject(playerMatchDTO, playerMatchModel);
     }
 
     public Object patch(UUID id, Map<String, Object> parcialData) {
-        Match matchModel = matchRepository.findById(id)
-                .orElseThrow(()-> new RuntimeException("Mach not found"));
-        mergeData(parcialData, matchModel);
-        matchModel = matchRepository.save(matchModel);
-        return matchModel;
+    	Match playerMatchModel = matchRepository.findById(id)
+                .orElseThrow(()-> new RuntimeException("No played matches found"));
+        mergeData(parcialData, playerMatchModel);
+        playerMatchModel = matchRepository.save(playerMatchModel);
+        return playerMatchModel;
     }
 
     public void delete(UUID id) {
-        Match match = matchRepository.findById(id)
-                .orElseThrow(()-> new RuntimeException("Mach not found"));
-        matchRepository.deleteById(match.getId());
+    	Match playerMatch = matchRepository.findById(id)
+                .orElseThrow(()-> new RuntimeException("No played matches found"));
+        matchRepository.deleteById(playerMatch.getId());
     }
+
 }
