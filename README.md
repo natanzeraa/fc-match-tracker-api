@@ -70,7 +70,8 @@ A aplicação utiliza o PostgreSQL, que é configurado para ser executado em um 
    spring.jpa.hibernate.ddl-auto=update
    ```
 
-A aplicação estará disponível em `http://localhost:8080`.
+A API estará disponível em `http://localhost:8080`.
+O painel administrativo do PG Admin estará disponível em `http://localhost:8082`.
 
 ## Exemplos de Uso
 
@@ -85,6 +86,9 @@ A aplicação estará disponível em `http://localhost:8080`.
 }
 
 ```
+<a href="https://drive.google.com/uc?export=view&id=1XCo6lN1FWJVJHWjWU_3lIeTBXjlCTURf">
+<img src="https://drive.google.com/uc?export=view&id=1XCo6lN1FWJVJHWjWU_3lIeTBXjlCTURf" style="width: 650px; max-width: 100%; height: auto" title="Clique para ver a imagem em tela cheia" />
+</a>
 
 ### Criar uma Nova Partida
 
@@ -98,6 +102,13 @@ A aplicação estará disponível em `http://localhost:8080`.
   "awayPlayer": "08ab435c-07b7-4d4a-be37-6502d9c1ed83"
 }
 ```
+
+<a href="https://drive.google.com/uc?export=view&id=11j6bt9FAsINzLgbxu3r0XZlUpkOxHg7X">
+<img src="https://drive.google.com/uc?export=view&id=11j6bt9FAsINzLgbxu3r0XZlUpkOxHg7X" style="width: 650px; max-width: 100%; height: auto" title="Clique para ver a imagem em tela cheia" />
+</a>
+
+
+Você pode baixar o arquivo de requests aqui [FC Match Tracker API Requests](https://drive.google.com/file/d/1qgGCGep3vdNngn7V5xXwdDdJl0l93awE/view?usp=drive_link)
 
 > **Nota**: A API não permite que um jogador jogue uma partida consigo mesmo. Se essa regra for violada, uma resposta de erro será retornada.
 
@@ -115,4 +126,4 @@ Contribuições são bem-vindas! Sinta-se à vontade para abrir um *pull request
 
 ## Contato
 
-Desenvolvido por [Natan Oliveira](https://github.com/natanzeraa).
+Desenvolvido por [Natan Oliveira](https://www.linkedin.com/in/natan-oliveira-71023822b/).
