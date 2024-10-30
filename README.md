@@ -61,6 +61,14 @@ A aplicação utiliza o PostgreSQL, que é configurado para ser executado em um 
    docker compose up -d --build
    ```
 
+   
+> Ou você pode simplesmente clicar no botão indicado na imagem abaixo caso esteja usando o Eclipse IDE
+
+<a href="https://drive.google.com/uc?export=view&id=1ygCqtEkEsFbD2lcr9pCvP_HMcpb-xPl3">
+<img src="https://drive.google.com/uc?export=view&id=1ygCqtEkEsFbD2lcr9pCvP_HMcpb-xPl3" style="width: 650px; max-width: 100%; height: auto" title="Clique para ver a imagem em tela cheia" />
+</a>
+
+
 2. No arquivo `application.properties`, configure as credenciais do PostgreSQL:
 
    ```properties
