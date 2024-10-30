@@ -51,39 +51,24 @@ git clone https://github.com/fifa24-match-tracker/fifa24-match-tracker.git
 cd fifa24-match-tracker
 ```
 
-### 2. Configure o Banco de Dados
+### 2. Execute a aplicação da seguinte maneira
 
-A aplicação utiliza o PostgreSQL, que é configurado para ser executado em um container Docker.
+A aplicação utiliza o PostgreSQL, que é configurado para ser executado em um container Docker usando o docker compose.
 
-1. Execute o container do PostgreSQL com o seguinte comando:
+1. Execute o container do PostgreSQL com o seguinte comando dentro da pasta do projeto:
 
    ```bash
-   docker run --name nome_do_container -e POSTGRES_USER=seu_usuario -e POSTGRES_PASSWORD=sua_senha -e POSTGRES_DB=seu_banco -p 5432:5432 -d postgres
+   docker compose up -d --build
    ```
 
 2. No arquivo `application.properties`, configure as credenciais do PostgreSQL:
 
    ```properties
-   spring.datasource.url=jdbc:postgresql://localhost:5432/seu_banco
-   spring.datasource.username=seu_usuario
-   spring.datasource.password=sua_senha
+   spring.datasource.url=jdbc:postgresql://fc-posgtfres:5432/admin
+   spring.datasource.username=admin
+   spring.datasource.password=admin
+   spring.jpa.hibernate.ddl-auto=update
    ```
-
-### 3. Compile o Projeto
-
-No diretório raiz do projeto, execute:
-
-```bash
-mvn clean install
-```
-
-### 4. Execute a Aplicação
-
-Para iniciar a aplicação, execute:
-
-```bash
-mvn spring-boot:run
-```
 
 A aplicação estará disponível em `http://localhost:8080`.
 
@@ -95,9 +80,10 @@ A aplicação estará disponível em `http://localhost:8080`.
 
 ```json
 {
-  "name": "Jogador 1",
-  "nickname": "J1"
+	"name": "Felipe Albuquerque", 
+	"email": "fe_albuquerque@email.com"
 }
+
 ```
 
 ### Criar uma Nova Partida
@@ -106,10 +92,10 @@ A aplicação estará disponível em `http://localhost:8080`.
 
 ```json
 {
-  "player1Id": 1,
-  "player2Id": 2,
-  "scorePlayer1": 3,
-  "scorePlayer2": 1
+  "homePlayerGoals": 3,
+  "awayPlayerGoals": 5,
+  "homePlayer": "80c23433-979e-4480-b472-3fa217770381", 
+  "awayPlayer": "08ab435c-07b7-4d4a-be37-6502d9c1ed83"
 }
 ```
 
@@ -129,4 +115,4 @@ Contribuições são bem-vindas! Sinta-se à vontade para abrir um *pull request
 
 ## Contato
 
-Desenvolvido por [Seu Nome](https://github.com/natanzeraa).
+Desenvolvido por [Natan Oliveira](https://github.com/natanzeraa).
