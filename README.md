@@ -2,9 +2,9 @@
 
 ---
 
-# FIFA 24 Match Tracker API
+# FC Match Tracker API
 
-API desenvolvida para registrar resultados de partidas de FIFA 24 entre amigos. Com esta API, é possível cadastrar jogadores, criar partidas e associá-las aos jogadores, oferecendo controle sobre as partidas realizadas.
+API desenvolvida para registrar resultados de partidas de FIFA 24/25 entre amigos. Com esta API, é possível cadastrar jogadores, criar partidas e associá-las aos jogadores, oferecendo controle sobre as partidas realizadas.
 
 ## Tecnologias Utilizadas
 
