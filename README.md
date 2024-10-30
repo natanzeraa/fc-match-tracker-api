@@ -58,7 +58,7 @@ A aplicação utiliza o PostgreSQL, que é configurado para ser executado em um 
 1. Execute o container do PostgreSQL com o seguinte comando:
 
    ```bash
-   docker run --name postgres-fifa24 -e POSTGRES_USER=seu_usuario -e POSTGRES_PASSWORD=sua_senha -e POSTGRES_DB=seu_banco -p 5432:5432 -d postgres
+   docker run --name nome_do_container -e POSTGRES_USER=seu_usuario -e POSTGRES_PASSWORD=sua_senha -e POSTGRES_DB=seu_banco -p 5432:5432 -d postgres
    ```
 
 2. No arquivo `application.properties`, configure as credenciais do PostgreSQL:
