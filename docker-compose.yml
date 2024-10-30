@@ -1,0 +1,30 @@
+services:
+  fc-postgres:
+    image: postgres:latest
+    container_name: fc-postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: admin
+      POSTGRES_USER: admin
+    ports:
+      - 5432:5432
+    volumes:
+      - ./data/postgres:/var/lib/postgresql/data
+  fc-pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: fc-pgadmin
+    restart: always
+    depends_on:
+      - fc-postgres
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@localhost.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - 8082:80
+    volumes:
+      - ./data/pgadmin:/var/lib/pgadmin
+
+networks:
+  default:
+    name: fc-network
+    external: true
